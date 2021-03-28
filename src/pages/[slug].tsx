@@ -3,23 +3,16 @@ import { GetStaticProps } from 'next'
 
 import client from 'graphql/client'
 import { GET_PAGES, GET_PAGE_BY_SLUG } from 'graphql/queries'
-import Head from 'next/head'
-import PageTemplate, { PageTemplateProps } from 'templates/Pages'
 import { GetPageBySlugQuery, GetPagesQuery } from 'graphql/generated/graphql'
+
+import PageTemplate, { PageTemplateProps } from 'templates/Pages'
 
 export default function Page({ heading, body }: PageTemplateProps) {
   const router = useRouter()
 
   if (router.isFallback) return null
 
-  return (
-    <>
-      <Head>
-        <title>{heading}</title>
-      </Head>
-      <PageTemplate heading={heading} body={body} />
-    </>
-  )
+  return <PageTemplate heading={heading} body={body} />
 }
 
 export async function getStaticPaths() {
