@@ -18,9 +18,7 @@ const PageTemplate = ({ heading, body }: PageTemplateProps) => {
 
       <S.Heading>{heading}</S.Heading>
 
-      <S.Body>
-        <div dangerouslySetInnerHTML={{ __html: body }} />
-      </S.Body>
+      <S.Body dangerouslySetInnerHTML={{ __html: body }} />
     </S.Content>
   )
 }
