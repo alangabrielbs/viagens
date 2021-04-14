@@ -9,14 +9,25 @@ import dynamic from 'next/dynamic'
 
 import LinkWrapper from 'components/LinkWrapper'
 import { MapProps } from 'components/Map'
+import Firebase from 'services/firebase-init'
 
 const Map = dynamic(() => import('components/Map'), { ssr: false })
 
 export default function HomeTemplate({ places }: MapProps) {
-  function getMessage() {
-    console.log('message functions')
-    const messaging = firebase.messaging()
-    messaging.onMessage((message) => console.log('foreground', message))
+  const getMessage = async () => {
+    try {
+      const token = await Firebase.getInstance().init()
+
+      if (token) {
+        console.log('[TOKEN]:', token)
+
+        console.log('{message functions}')
+        const messaging = firebase.messaging()
+        messaging.onMessage((message) => console.log('foreground', message))
+      }
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   useEffect(() => {
@@ -26,7 +37,6 @@ export default function HomeTemplate({ places }: MapProps) {
         console.log('event for the service worker', event)
       )
     }
-
     getMessage()
   }, [])
 

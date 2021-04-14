@@ -33,6 +33,8 @@ export default class Firebase {
         })
 
       console.log('Firebase loaded!')
+
+      return this.askForPermissioToReceiveNotifications()
     } catch (err) {
       console.error(err)
     }
