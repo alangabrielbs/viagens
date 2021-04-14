@@ -1,4 +1,8 @@
+import { useEffect } from 'react'
 import { NextSeo } from 'next-seo'
+
+import firebase from 'firebase'
+import 'firebase/messaging'
 
 import { InfoOutline } from '@styled-icons/evaicons-outline/InfoOutline'
 import dynamic from 'next/dynamic'
@@ -9,6 +13,23 @@ import { MapProps } from 'components/Map'
 const Map = dynamic(() => import('components/Map'), { ssr: false })
 
 export default function HomeTemplate({ places }: MapProps) {
+  function getMessage() {
+    console.log('message functions')
+    const messaging = firebase.messaging()
+    messaging.onMessage((message) => console.log('foreground', message))
+  }
+
+  useEffect(() => {
+    if ('serviceWorker' in navigator) {
+      console.log('[serviceWorker]')
+      navigator.serviceWorker.addEventListener('message', (event) =>
+        console.log('event for the service worker', event)
+      )
+    }
+
+    getMessage()
+  }, [])
+
   return (
     <>
       <NextSeo

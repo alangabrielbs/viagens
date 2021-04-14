@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 importScripts('https://www.gstatic.com/firebasejs/7.17.2/firebase-app.js')
 importScripts('https://www.gstatic.com/firebasejs/7.17.2/firebase-messaging.js')
-importScripts('https://www.gstatic.com/firebasejs/7.17.2/firebase-analytics.js')
 
 const firebaseConfig = {
   apiKey: 'AIzaSyC9udVXrbaymtQGbYuph0-DmU1rVp2LJLQ',
