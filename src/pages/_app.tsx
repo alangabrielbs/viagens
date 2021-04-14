@@ -11,7 +11,9 @@ import Firebase from 'services/firebase-init'
 function App({ Component, pageProps }: AppProps) {
   if (typeof window !== 'undefined') {
     Firebase.getInstance().init()
-    Firebase.getInstance().askForPermissioToReceiveNotifications()
+    setTimeout(() => {
+      Firebase.getInstance().askForPermissioToReceiveNotifications()
+    }, 3 * 1000)
   }
   return (
     <>
