@@ -1,9 +1,9 @@
-import { useRouter } from 'next/dist/client/router'
 import { GetStaticProps } from 'next'
+import { useRouter } from 'next/router'
 
 import client from 'graphql/client'
 import { GET_PLACES, GET_PLACE_BY_SLUG } from 'graphql/queries'
-import Head from 'next/head'
+
 import { GetPlaceBySlugQuery, GetPlacesQuery } from 'graphql/generated/graphql'
 import PlacesTemplate, { PlacesTemplateProps } from '../../templates/Places'
 
@@ -12,14 +12,7 @@ export default function Place({ place }: PlacesTemplateProps) {
 
   if (router.isFallback) return null
 
-  return (
-    <>
-      <Head>
-        <title>{place.name}</title>
-      </Head>
-      <PlacesTemplate place={place} />
-    </>
-  )
+  return <PlacesTemplate place={place} />
 }
 
 export async function getStaticPaths() {

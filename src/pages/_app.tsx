@@ -6,8 +6,13 @@ import { DefaultSeo } from 'next-seo'
 import SEO from '../../next-seo.config'
 
 import GlobalStyles from 'styles/GlobalStyles'
+import Firebase from 'services/firebase-init'
 
 function App({ Component, pageProps }: AppProps) {
+  if (typeof window !== 'undefined') {
+    Firebase.getInstance().init()
+    Firebase.getInstance().askForPermissioToReceiveNotifications()
+  }
   return (
     <>
       <Head>
