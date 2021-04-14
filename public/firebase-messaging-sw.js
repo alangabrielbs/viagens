@@ -15,7 +15,6 @@ const firebaseConfig = {
 
 try {
   firebase.initializeApp(firebaseConfig)
-  firebase.analytics()
   const messaging = firebase.messaging()
 } catch (error) {
   console.log(error)
