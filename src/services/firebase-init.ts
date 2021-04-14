@@ -25,11 +25,12 @@ export default class Firebase {
     try {
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig)
-      firebase.analytics()
 
-      navigator.serviceWorker.register('/sw.js').then((registration) => {
-        firebase.messaging().useServiceWorker(registration)
-      })
+      navigator.serviceWorker
+        .register('/firebase-sw.js')
+        .then((registration) => {
+          firebase.messaging().useServiceWorker(registration)
+        })
 
       console.log('Firebase loaded!')
     } catch (err) {
